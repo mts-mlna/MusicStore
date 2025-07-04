@@ -3,7 +3,7 @@ from .models import *
 
 class ClienteForm(forms.ModelForm):
     class Meta:
-        model = cliente
+        model = Cliente
         fields = ['nombre', 'apellido', 'email', 'telefono']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
@@ -14,7 +14,7 @@ class ClienteForm(forms.ModelForm):
         
 class ProductoForm(forms.ModelForm):
     class Meta:
-        model = producto
+        model = Producto
         fields = ['nombre', 'descripcion', 'precio', 'stock', 'imagen']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
