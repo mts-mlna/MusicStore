@@ -3,9 +3,9 @@
 {% block content %}
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form method="POST">
+        <form method="post">
             {% csrf_token %}
-            {{form}}
+            {{signup}}
             <button type="submit">Ingresar</button>
         </form>
         <p>¿No tienes una cuenta? <a href="{% url 'Register' %}">Regístrate aquí</a></p>

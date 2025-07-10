@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div>
+        <form action="post" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Registrar Producto</h2>
+            {{ regproducto }}
+            <button type="submit" value="registro">Registrar Producto</button>
+        </form>
+    </div>
+{% endblock content %}

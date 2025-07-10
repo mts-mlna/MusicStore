@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {% for i in Producto %}
+        <h1>Nombre: {{i.Nombre}}</h1>
+        <p>Descripción: {{i.Descripcion}}</p>
+        <p>Precio: {{i.Precio}}</p>
+        <p>Stock: {{i.Stock}}</p>
+        <img src="{{i.imagen.url}}" alt="">
+
+    {% endfor %}
+{% endblock content %}
