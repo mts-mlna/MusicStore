@@ -22,19 +22,26 @@
         <nav class="navbar">
             <ul>
                 <li><a href=""><span>Inicio</span></a></li>
-                <li><a href=""><span>Productos</span></a></li>
+                <li><a href="{% url 'Producto' %}"><span>Productos</span></a></li>
                 <li><a href=""><span>Contacto</span></a></li>
-                <li><a href=""><span>Buscar</span></a></li>
-                <li><a href=""><span>Ingresar</span></a></li>
-                <li><a href=""><span>Carrito</span></a></li>
-                <li><a href=""><span>Cerrar Sesión</span></a></li>
-                <li><a href=""><span>Administrar</span></a></li>
+                <li><a href="{% url 'Buscar'}"><span>Buscar</span></a></li>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                    <li><a href="{% url 'Registro' %}"><span>Administrar</span></a></li>    
+                    {% endif %}
+                    <li><a href=""><span>Carrito</span></a></li>
+                    <li><a href="{% url 'logouts' %}"><span>Cerrar Sesión</span></a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}"><span>Ingresar</span></a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
+    {% block content %}
     <main>
 
     </main>
+    {% endblock content %}
     <footer>
 
     </footer>
