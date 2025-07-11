@@ -21,35 +21,38 @@
         </div>
         <nav class="navbar">
             <ul>
-                <li><a href="{% url 'Home' %}"><span>Inicio</span></a></li>
-                <li><a href="{% url 'Producto' %}"><span>Productos</span></a></li>
-                <li><a href=""><span>Contacto</span></a></li>
-                <li><a href="{% url 'Buscar' %}"><span>Buscar</span></a></li>
+                <li><a href="{% url 'Home' %}" class="inicio"><span>Inicio</span></a></li>
+                <li><a href="{% url 'Producto' %}" class="productos"><span>Productos</span></a></li>
+                <li><a href="" class="contacto"><span>Contacto</span></a></li>
                 {% if user.is_authenticated %}
                 {% if user.is_staff %}
-                <li><a href="{% url 'Registro' %}"><span>Administrar</span></a></li>
+                <li><a href="{% url 'Registro' %}" class="admin"><span>Administrar</span></a></li>
                 {% endif %}
-                <li><a href=""><span>Carrito</span></a></li>
-                <li><a href="{% url 'logouts' %}"><span>Cerrar Sesión</span></a></li>
+                <li><a href="{% url 'logouts' %}" class="logout"><span>Cerrar Sesión</span></a></li>
                 {% else %}
-                <li><a href="{% url 'login' %}"><span>Ingresar</span></a></li>
+                <li><a href="{% url 'login' %}" class="login"><span>Ingresar</span></a></li>
                 {% endif %}
             </ul>
         </nav>
     </header>
     {% block content %}
     <main>
-        <!-- <div class="filtros">
-            <form action="" method="get">
-                <label for="">Nombre: </label>
-                <input type="text" name="filtroNom" id="">
-                <label for="">Des: </label>
-                <input type="text" name="filtroDes" id="">
-                <input type="submit" value="Buscar">
-            </form>
-        </div> -->
-        
-        
+        <div class="tarjetas">
+            {% for i in a %}
+                <div class="tar">
+                    <img src="{{i.Imagen.url}}" alt="">
+                    <div class="nomprec">
+                        <p>{{i.Nombre}}</p>
+                        <p class="precio">${{i.Precio}}</p>
+                    </div>
+                    <div class="nomprec">
+                        Cantidad
+                        <p>{{i.Stock}}</p>
+                    </div>
+                    <p class="nomprec">{{i.Descripcion}}</p>
+                </div>
+            {% endfor %}
+        </div>
     </main>
     {% endblock content %}
     <footer>

@@ -1,13 +1,28 @@
 {% extends "index.html" %}
+{% load static %}
 
 {% block content %}
-    <div class="login-container">
-        <h2>Iniciar Sesión</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{form}}
+
+<style>
+    main{
+        height: 507px;
+        padding-top: 1%;
+        display: flex;
+    }
+</style>
+
+<main>
+    <form class="login-container" method="POST">
+        <img src="{% static 'src/images/login-image.png' %}" alt="">
+        <div class="forminner">
+            <h2 class="center-text">Iniciar Sesión</h2>
+            <div class="inputs">
+                {% csrf_token %}
+                {{form}}
+            </div>
             <button type="submit">Ingresar</button>
-        </form>
-        <p>¿No tienes una cuenta? <a href="{% url 'Register' %}">Regístrate aquí</a></p>
-    </div>
+            <p>¿No tienes una cuenta? <a href="{% url 'Register' %}">Regístrate aquí</a></p>
+        </div>
+    </form>
+</main>
 {% endblock content %}
