@@ -17,6 +17,7 @@
                 <input type="submit" value="Buscar">
             </div>
         </div>
+<<<<<<< HEAD
     </form>
 </div>
 
@@ -32,3 +33,22 @@
     {% endfor %}
 </div>
 {% endblock content %}
+=======
+        <div class="tarjetas">
+            {% for i in productos %}
+                <div class="tar">
+                    <img src="{{i.Imagen.url}}" alt="">
+                    <div class="nomprec">
+                        <p>{{i.Nombre}}</p>
+                        <p class="precio">${{i.Precio}}</p>
+                    </div>
+                    <div class="nomprec">
+                        Cantidad
+                        <p>{{i.Stock}}</p>
+                    </div>
+                    <p class="nomprec">{{i.Descripcion}}</p>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock content %}
+>>>>>>> 8022196b0d19e6b0ef1da3945f601a6ca1c0cdf1
