@@ -71,9 +71,12 @@ def producto(request):
     }
     return render(request,"pages/Productos.html", data)
 
+@staff_member_required
 
 def Registro(request):
+    query = Producto.objects.all()
     data={
+        'productos': query,
         'regproducto':ProductoForm()
     }
     if request.method == 'POST':
@@ -84,6 +87,25 @@ def Registro(request):
         else:
             data['regproducto'] = ProductoForm()
     return render(request, 'Pages/Registro.html', data)
+
+def Modificar(request, codigo):
+    producto = Producto.objects.get(Codigo=codigo)
+    data = {
+        'modproducto': ProductoForm(instance=producto)
+    }
+
+    if request.method == 'POST':
+        formulario = ProductoForm(data=request.POST, files=request.FILES, instance=producto)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('Registro')
+
+    return render(request, 'Pages/Modificar.html', data)
+
+def eliminar_producto(request, codigo):
+    producto = Producto.objects.get(Codigo=codigo)
+    producto.delete()
+    return redirect('Registro')
 
 
 

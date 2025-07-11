@@ -1,12 +1,26 @@
 {% extends "index.html" %}
 
 {% block content %}
-    <div>
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h2>Registrar Producto</h2>
-            {{ regproducto }}
-            <button type="submit" value="registro">Registrar Producto</button>
-        </form>
+<div>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Registrar Producto</h2>
+        {{ regproducto }}
+        <button type="submit" value="registro">Registrar Producto</button>
+    </form>
+    <div class="tarjetas">
+        {% for i in productos %}
+        <div class="tar">
+            <h1>Nombre: {{i.Nombre}}</h1>
+            <p>Descripción: {{i.Descripcion}}</p>
+            <p>Precio: ${{i.Precio}}</p>
+            <p>Stock: {{i.Stock}}</p>
+            <img src="{{i.Imagen.url}}" alt="">
+            <a href="{% url 'Modificar' i.Codigo %}">Modificar</a>
+            <a href="{% url 'eliminar_producto' i.Codigo %}"
+                onclick="return confirm('¿Estás seguro que querés eliminar este producto?');">Eliminar</a>
+        </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock content %}
