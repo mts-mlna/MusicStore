@@ -11,9 +11,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def Home(request):
-    query = Producto.objects.all()
+    ultimos_productos = Producto.objects.order_by('-Codigo')[:3]
     data = {
-        'a': query
+        'ultimos': ultimos_productos
     }
     return render (request, "index.html",data)
 

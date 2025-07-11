@@ -1,9 +1,14 @@
 {% extends "index.html" %}
 {% block content %}
-    <h2>Modificar Producto</h2>
-    <form method="POST" enctype="multipart/form-data">
+<div class="contenedor-formulario">
+    <form method="POST" enctype="multipart/form-data" class="formu">
         {% csrf_token %}
-        {{ modproducto }}
-        <button type="submit">Guardar Cambios</button>
+        <h1>Modificar Producto</h1>
+        <div class="campos-formulario">
+            {{ modproducto }}
+        </div>
+        <input type="submit" value="Guardar Cambios">
     </form>
+</div>
 {% endblock %}
+

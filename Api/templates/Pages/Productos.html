@@ -1,24 +1,34 @@
 {% extends "index.html" %}
 
 {% block content %}
-        <div class="filtros">           
-            <form action="" method="get">
-                <label for="">Nombre: </label>
-                <input type="text" name="filtroNom" id="">
-                <label for="">Des: </label>
-                <input type="text" name="filtroDes" id="">
+<div class="buscador">
+    <form action="" method="get" class="formu-buscador">
+        <h2>Buscar Álbum</h2>
+        <div class="grupo-busqueda">
+            <div class="campo-busqueda">
+                <label for="filtroNomAlbum">Nombre del álbum:</label>
+                <input type="text" name="filtroNomAlbum" id="filtroNomAlbum" placeholder="Ej. Thriller">
+            </div>
+            <div class="campo-busqueda">
+                <label for="filtroNomArtista">Nombre del artista:</label>
+                <input type="text" name="filtroNomArtista" id="filtroNomArtista" placeholder="Ej. Michael Jackson">
+            </div>
+            <div class="campo-boton">
                 <input type="submit" value="Buscar">
-            </form>
+            </div>
         </div>
-        <div class="tarjetas">
-            {% for i in productos %}
-                <div class="tar">
-                    <h1>Nombre: {{i.Nombre}}</h1>
-                    <p>Descripción: {{i.Descripcion}}</p>
-                    <p>Precio: ${{i.Precio}}</p>
-                    <p>Stock: {{i.Stock}}</p>
-                    <img src="{{i.Imagen.url}}" alt="">
-                </div>
-            {% endfor %}
-        </div>
+    </form>
+</div>
+
+<div class="tarjetas">
+    {% for i in productos %}
+    <div class="tarjeta-producto">
+        <img src="{{i.Imagen.url}}" alt="Imagen de {{i.Nombre}}" class="imagen-producto">
+        <h1 class="nombre-producto">Nombre: {{i.Nombre}}</h1>
+        <p class="descripcion-producto">Descripción: {{i.Descripcion}}</p>
+        <p class="precio-producto">Precio: ${{i.Precio}}</p>
+        <p class="stock-producto">Stock: {{i.Stock}}</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock content %}

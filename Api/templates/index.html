@@ -23,7 +23,7 @@
             <ul>
                 <li><a href="{% url 'Home' %}" class="inicio"><span>Inicio</span></a></li>
                 <li><a href="{% url 'Producto' %}" class="productos"><span>Productos</span></a></li>
-                <li><a href="" class="contacto"><span>Contacto</span></a></li>
+                <li><a href="#contacto" class="contacto"><span>Contacto</span></a></li>
                 {% if user.is_authenticated %}
                 {% if user.is_staff %}
                 <li><a href="{% url 'Registro' %}" class="admin"><span>Administrar</span></a></li>
@@ -37,30 +37,94 @@
     </header>
     {% block content %}
     <main>
-        <div class="tarjetas">
-            {% for i in a %}
-                <div class="tar">
-                    <img src="{{i.Imagen.url}}" alt="">
-                    <div class="nomprec">
-                        <p>{{i.Nombre}}</p>
-                        <p class="precio">${{i.Precio}}</p>
-                    </div>
-                    <div class="nomprec">
-                        Cantidad
-                        <p>{{i.Stock}}</p>
-                    </div>
-                    <p class="nomprec">{{i.Descripcion}}</p>
+        <h1 class="titulo-carrusel">Últimos Añadidos</h1>
+
+        <div class="carrusel-productos">
+            {% for i in ultimos %}
+            <div class="tar">
+                <img src="{{i.Imagen.url}}" alt="Imagen de {{i.Nombre}}">
+                <div class="nomprec">
+                    <p class="titulo-album">{{i.Nombre}}</p>
+                    <p class="precio">${{i.Precio}}</p>
                 </div>
+                <div class="nomprec">
+                    <span>Cantidad:</span>
+                    <p>{{i.Stock}}</p>
+                </div>
+                <p class="descripcion-album">{{i.Descripcion}}</p>
+            </div>
             {% endfor %}
         </div>
-    </main>
-    {% endblock content %}
-    <footer>
 
+        <div class="ver-mas">
+            <a href="{% url 'Producto' %}" class="boton-vermas">
+                <span>Ver Más</span>
+            </a>
+        </div>
+    </main>
+    {% endblock %}
+
+    <footer id="contacto" class="footer-contacto">
+        <div class="footer-contenido">
+            <div class="footer-integrantes">
+                <h3>Integrantes del Proyecto</h3>
+                <ul>
+                    <li>
+                        Gonzalo Alegre<br>
+                        <a href="https://www.instagram.com/gnzzaar?igsh=aW4zOXl6OGszajVj"
+                            class="instagram-link">Instagram personal</a>
+                    </li>
+                    <li>
+                        Abril Castro<br>
+                        <a href="https://www.instagram.com/apfelsoja?igsh=MXJsOHU2ZGVnZncxYw=="
+                            class="instagram-link">Instagram personal</a>
+                    </li>
+                    <li>
+                        Matias Molina<br>
+                        <a href="https://www.instagram.com/mts_mlna?igsh=dzIwaDBkam85MGg1"
+                            class="instagram-link">Instagram personal</a>
+                    </li>
+                    <li>
+                        Bruno Sánchez<br>
+                        <a href="https://www.instagram.com/grumno_eze?igsh=YXJidHF1bXlmb3F1"
+                            class="instagram-link">Instagram personal</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-colegio">
+                <h3>Contacto del Colegio</h3>
+                <p>E.E.S.T. N°1 Esteban Echeverría</p>
+                <p>Teléfono: <span class="colegio-dato">[Número de teléfono]</span></p>
+                <p>Dirección: <span class="colegio-dato">Güemes 2051 - Monte Grande</span></p>
+                <p><a href="https://sites.google.com/view/tecnica1montegrande/inicio" class="web-link">Sitio Web del
+                        Colegio</a></p>
+            </div>
+        </div>
+
+        <div class="footer-derechos">
+            <p>© 2025 Todos los derechos reservados - Proyecto Escolar 2025 </p>
+        </div>
+        <button id="btn-ir-arriba" title="Volver arriba">↑</button>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
+    <script>
+        const btnIrArriba = document.getElementById("btn-ir-arriba");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                btnIrArriba.classList.add("mostrar");
+            } else {
+                btnIrArriba.classList.remove("mostrar");
+            }
+        });
+        btnIrArriba.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+
 </body>
 
 </html>

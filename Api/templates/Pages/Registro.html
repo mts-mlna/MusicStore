@@ -1,26 +1,30 @@
 {% extends "index.html" %}
-
 {% block content %}
-<div>
-    <form action="" method="POST" enctype="multipart/form-data">
+<div class="contenedor-formulario">
+    <form action="" method="POST" enctype="multipart/form-data" class="formu">
         {% csrf_token %}
-        <h2>Registrar Producto</h2>
-        {{ regproducto }}
-        <button type="submit" value="registro">Registrar Producto</button>
+        <h2 class="titulo-formulario">Registrar Producto</h2>
+        <div class="campos-formulario">
+            {{ regproducto }}
+        </div>
+        <button type="submit" value="registro" class="boton-registrar">Registrar Producto</button>
     </form>
-    <div class="tarjetas">
+
+    <div class="tarjetas-producto">
         {% for i in productos %}
-        <div class="tar">
-            <h1>Nombre: {{i.Nombre}}</h1>
-            <p>Descripción: {{i.Descripcion}}</p>
-            <p>Precio: ${{i.Precio}}</p>
-            <p>Stock: {{i.Stock}}</p>
-            <img src="{{i.Imagen.url}}" alt="">
-            <a href="{% url 'Modificar' i.Codigo %}">Modificar</a>
-            <a href="{% url 'eliminar_producto' i.Codigo %}"
-                onclick="return confirm('¿Estás seguro que querés eliminar este producto?');">Eliminar</a>
+        <div class="tarjeta-producto">
+            <img src="{{i.Imagen.url}}" alt="Imagen de {{i.Nombre}}" class="imagen-producto">
+            <h1 class="nombre-producto">Nombre: {{i.Nombre}}</h1>
+            <p class="descripcion-producto">Descripción: {{i.Descripcion}}</p>
+            <p class="precio-producto">Precio: ${{i.Precio}}</p>
+            <p class="stock-producto">Stock: {{i.Stock}}</p>
+            <div class="acciones-producto">
+                <a href="{% url 'Modificar' i.Codigo %}" class="boton-modificar">Modificar</a>
+                <a href="{% url 'eliminar_producto' i.Codigo %}" class="boton-eliminar"
+                   onclick="return confirm('¿Estás seguro que querés eliminar este producto?');">Eliminar</a>
+            </div>
         </div>
         {% endfor %}
     </div>
 </div>
-{% endblock content %}
+{% endblock %}
