@@ -11,7 +11,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def Home(request):
-<<<<<<< HEAD
     ultimos_productos = Producto.objects.order_by('-Codigo')[:3]
     data = {
         'ultimos': ultimos_productos
