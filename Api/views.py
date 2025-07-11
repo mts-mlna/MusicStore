@@ -7,13 +7,15 @@ import time
 from django.db.models import Q
 from .models import *
 
-
-
 from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def Home(request):
-    return render (request, "index.html")
+    query = Producto.objects.all()
+    data = {
+        'a': query
+    }
+    return render (request, "index.html",data)
 
 @login_required
 
@@ -60,17 +62,6 @@ def producto(request):
     }
     return render(request,"pages/Productos.html", data)
 
-def iniciarsesion(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('Home')
-        else:
-            return render(request, 'registration/login.html', {'error': 'Credenciales inválidas'})
-    return render(request, 'registration/login.html')
 
 def Registro(request):
     data={

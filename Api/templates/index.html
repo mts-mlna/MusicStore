@@ -26,20 +26,30 @@
                 <li><a href=""><span>Contacto</span></a></li>
                 <li><a href="{% url 'Buscar'}"><span>Buscar</span></a></li>
                 {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                    <li><a href="{% url 'Registro' %}"><span>Administrar</span></a></li>    
-                    {% endif %}
-                    <li><a href=""><span>Carrito</span></a></li>
-                    <li><a href="{% url 'logouts' %}"><span>Cerrar Sesión</span></a></li>
-                    {% else %}
-                    <li><a href="{% url 'login' %}"><span>Ingresar</span></a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'Registro' %}"><span>Administrar</span></a></li>
+                {% endif %}
+                <li><a href=""><span>Carrito</span></a></li>
+                <li><a href="{% url 'logouts' %}"><span>Cerrar Sesión</span></a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}"><span>Ingresar</span></a></li>
                 {% endif %}
             </ul>
         </nav>
     </header>
     {% block content %}
     <main>
-
+        <div class="tarjetas">
+            {% for i in a %}
+                <div class="tar">
+                    <h1>Nombre: {{i.Nombre}}</h1>
+                    <p>Descripción: {{i.Descripcion}}</p>
+                    <p>Precio: ${{i.Precio}}</p>
+                    <p>Stock: {{i.Stock}}</p>
+                    <img src="{{i.Imagen.url}}" alt="">
+                </div>
+            {% endfor %}
+        </div>
     </main>
     {% endblock content %}
     <footer>

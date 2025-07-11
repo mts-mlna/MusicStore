@@ -1,12 +1,11 @@
 {% extends "index.html" %}
 
 {% block content %}
-    {% for i in Producto %}
+    {% for i in productos %}
         <h1>Nombre: {{i.Nombre}}</h1>
         <p>Descripción: {{i.Descripcion}}</p>
-        <p>Precio: {{i.Precio}}</p>
+        <p>Precio: ${{i.Precio}}</p>
         <p>Stock: {{i.Stock}}</p>
-        <img src="{{i.imagen.url}}" alt="">
-
+        <img src="{{i.Imagen.url}}" alt="">
     {% endfor %}
 {% endblock content %}
