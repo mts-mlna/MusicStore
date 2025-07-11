@@ -1,11 +1,24 @@
 {% extends "index.html" %}
 
 {% block content %}
-    {% for i in productos %}
-        <h1>Nombre: {{i.Nombre}}</h1>
-        <p>Descripción: {{i.Descripcion}}</p>
-        <p>Precio: ${{i.Precio}}</p>
-        <p>Stock: {{i.Stock}}</p>
-        <img src="{{i.Imagen.url}}" alt="">
-    {% endfor %}
+        <div class="filtros">           
+            <form action="" method="get">
+                <label for="">Nombre: </label>
+                <input type="text" name="filtroNom" id="">
+                <label for="">Des: </label>
+                <input type="text" name="filtroDes" id="">
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <div class="tarjetas">
+            {% for i in productos %}
+                <div class="tar">
+                    <h1>Nombre: {{i.Nombre}}</h1>
+                    <p>Descripción: {{i.Descripcion}}</p>
+                    <p>Precio: ${{i.Precio}}</p>
+                    <p>Stock: {{i.Stock}}</p>
+                    <img src="{{i.Imagen.url}}" alt="">
+                </div>
+            {% endfor %}
+        </div>
 {% endblock content %}
