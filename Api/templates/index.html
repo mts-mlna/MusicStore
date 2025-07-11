@@ -37,7 +37,6 @@
     </header>
     {% block content %}
     <main>
-<<<<<<< HEAD
         <h1 class="titulo-carrusel">Últimos Añadidos</h1>
 
         <div class="carrusel-productos">
@@ -55,37 +54,6 @@
                 <p class="descripcion-album">{{i.Descripcion}}</p>
             </div>
             {% endfor %}
-=======
-        <div class="preorder">
-            <img src="{% static 'src/images/banner-index.png' %}" alt="">
-        </div>
-        <div class="ultimos">
-            <div class="flex">
-                <h1>Ultimos Lanzamientos</h1>
-                <a href="{% url 'Producto' %}">Ver todo</a>
-            </div>
-            <div class="tarjetas">
-                {% for i in a %}
-                    <div class="tar">
-                        <img src="{{i.Imagen.url}}" alt="">
-                        <div class="nomprec">
-                            <p>{{i.Nombre}}</p>
-                            <p class="precio">${{i.Precio}}</p>
-                        </div>
-                        <div class="nomprec">
-                            Cantidad
-                            <p>{{i.Stock}}</p>
-                        </div>
-                        <p style="padding-left: 15px; padding-right: 15px;">{{i.Descripcion}}</p>
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
-        </div>
-        <div class="siguenos">
-            <h1>Síguenos en Instagram</h1>
-            <a href="">@gareispablo</a>
->>>>>>> 8022196b0d19e6b0ef1da3945f601a6ca1c0cdf1
         </div>
 
         <div class="ver-mas">
