@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Inter;
+    src: url(../src/font/Inter-VariableFont_opsz\,wght.ttf);
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -6,7 +11,8 @@
 }
 
 body{
-    background: #EFE6DD;
+    background: #242E49;
+    font-family: Inter;
 }
 
 .navbar{
@@ -19,26 +25,41 @@ body{
     display: flex;
     margin-bottom: 0;
     height: 100%;
+    gap: 25px;
 }
 
 .navbar ul li a{
     text-decoration: none;
-    border-right: 1px solid #000;
-    color: #000;
-    padding-left: 25px;
-    padding-right: 25px;
-    height: 100%;
+    height: 50%;
     align-items: center;
+    justify-content: center;
     display: flex;
+    padding: 25px;
+    background: #B4182D;
+    border-radius: 50px;
+    border: 2px solid #000;
+    box-shadow: 3px 3px #000;
+    transition: transform .1s ease, box-shadow .1s ease;
+}
+
+.navbar ul li a span{
+    text-align: center;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.navbar ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar ul li a:hover{
-    background: #fff;
+    box-shadow: 0 0;
+    transform: translateX(3px);
+    transform: translateY(3px);
 }
 
-.navbar ul li:first-child{
-    border-left: 1px solid #000;
-}
 
 header{
     display: flex;
@@ -47,7 +68,8 @@ header{
     align-items: center;
     padding-left: 150px;
     padding-right: 150px;
-    border-bottom: 1px solid #000;
+    border-bottom: 3px solid #000;
+    background: #37415c;
 }
 
 .logo img{
@@ -62,33 +84,127 @@ header{
     padding: 20px;
 }
 
-.tar {
-    background-color: blueviolet;
+.tar{
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 250px;
+    box-shadow: 4px 4px #000;
+    border: 2px solid #000;
+    transition: transform .1s ease, box-shadow .1s ease;
+}
+
+.tar:hover{
+    box-shadow: 0 0;
+    transform: translateX(4px);
+    transform: translateY(4px);
+}
+
+.tar p{
+    margin: 0;
+}
+
+.tar img{
+    border-radius: 7px 7px 0 0;
+    height: 256px;
+    border-bottom: 2px solid #000;
+}
+
+.nomprec{
+    display: flex;
+    padding: 5px 15px 0;
+    justify-content: space-between;
+}
+
+.precio{
+    color: green;
+}
+
+.login-container{
+    display: flex;
+    height: 75%;
+    width: auto;
+    gap: 50px;
+    margin: auto;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 3px 3px #000;
+    padding: 5px;
+    color: #000;
+}
+.login-container img{
+    height: 200px;
+}
+
+.inputs{
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 5px;
+}
+
+.center-text{
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    margin: auto;
+    color: #000;
 }
 
-
-.tar h1 {
-    color: var(--accent-color);
-    font-size: 1.3em;
-    margin-bottom: 5px;
+.forminner button{
+    width: 50%;
+    margin: auto;
+    background: #B20808 ;
+    padding: 5px;
+    border: 2px solid #000;
+    border-radius: 50px;
+    color: #FFF;
+    font-weight: bold;
+    box-shadow: 3px 3px #000;
+    transition: box-shadow .1s ease, transform .1s ease;
 }
 
-.tar p {
-    color: var(--secondary-accent-color);
-    font-size: 1em;
-    margin-bottom: 10px;
+.forminner button:hover{
+    box-shadow: 0 0;
+    transform: translateX(3px);
+    transform: translateY(3px);
 }
 
+.inputs div{
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 5px;
+}
 
-.tar img {
-    border-radius: 10px;
-    max-width: 100%;
-    height: 100px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+.forminner{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 25px;
+}
+
+.inputs div input[type=text], .inputs div input[type=password]{
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.inputs div input[type=text]:focus-visible, .inputs div input[type=password]:focus-visible{
+    outline: none;
+}
+
+.inputs:has(input:focus-visible){
+    outline: 2px solid #fff;
+    border: 1px solid #000;
+    box-shadow: 0 0 0 3px #000;
+}
+
+.helptext{
+    display: none !important;
+}
+
+.forminner p{
+    text-align: center;
 }
