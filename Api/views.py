@@ -57,6 +57,15 @@ def Register(request):
 
 def producto(request):
     query= Producto.objects.all()
+    filtroNom = request.GET.get('filtroNom')
+    filtroDes = request.GET.get('filtroDes')
+    if filtroNom:
+        query=Producto.objects.filter(
+            Q(Nombre__icontains=filtroNom) |
+            Q(Descripcion__icontains=filtroDes)
+        )
+    else:
+        query = Producto.objects.all()
     data={
         'productos':query
     }

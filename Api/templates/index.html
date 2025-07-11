@@ -21,10 +21,10 @@
         </div>
         <nav class="navbar">
             <ul>
-                <li><a href=""><span>Inicio</span></a></li>
+                <li><a href="{% url 'Home' %}"><span>Inicio</span></a></li>
                 <li><a href="{% url 'Producto' %}"><span>Productos</span></a></li>
                 <li><a href=""><span>Contacto</span></a></li>
-                <li><a href="{% url 'Buscar'}"><span>Buscar</span></a></li>
+                <li><a href="{% url 'Buscar' %}"><span>Buscar</span></a></li>
                 {% if user.is_authenticated %}
                 {% if user.is_staff %}
                 <li><a href="{% url 'Registro' %}"><span>Administrar</span></a></li>
@@ -39,17 +39,17 @@
     </header>
     {% block content %}
     <main>
-        <div class="tarjetas">
-            {% for i in a %}
-                <div class="tar">
-                    <h1>Nombre: {{i.Nombre}}</h1>
-                    <p>Descripción: {{i.Descripcion}}</p>
-                    <p>Precio: ${{i.Precio}}</p>
-                    <p>Stock: {{i.Stock}}</p>
-                    <img src="{{i.Imagen.url}}" alt="">
-                </div>
-            {% endfor %}
-        </div>
+        <!-- <div class="filtros">
+            <form action="" method="get">
+                <label for="">Nombre: </label>
+                <input type="text" name="filtroNom" id="">
+                <label for="">Des: </label>
+                <input type="text" name="filtroDes" id="">
+                <input type="submit" value="Buscar">
+            </form>
+        </div> -->
+        
+        
     </main>
     {% endblock content %}
     <footer>
