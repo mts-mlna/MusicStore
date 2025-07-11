@@ -11,9 +11,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def Home(request):
-    query = Producto.objects.all()
-    data = {
-        'a': query
+    ver=Producto.objects.all().order_by('Codigo')[:4]
+    data={
+        'a':ver
     }
     return render (request, "index.html",data)
 

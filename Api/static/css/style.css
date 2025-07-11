@@ -209,3 +209,34 @@ header{
 .forminner p{
     text-align: center;
 }
+
+.preorder img{
+    width: 100%;
+}
+
+.ultimos{
+    background: #eff4f2;
+    padding: 25px 0;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 100px;
+    align-items: center;
+}
+
+.flex a{
+    color: #000;
+}
+
+.siguenos{
+    background: #fff;
+    padding: 25px;
+    text-align: center;
+}
+
+.siguenos a{
+    font-size: 30px;
+    color: #000;
+}

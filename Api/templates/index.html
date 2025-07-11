@@ -37,21 +37,35 @@
     </header>
     {% block content %}
     <main>
-        <div class="tarjetas">
-            {% for i in a %}
-                <div class="tar">
-                    <img src="{{i.Imagen.url}}" alt="">
-                    <div class="nomprec">
-                        <p>{{i.Nombre}}</p>
-                        <p class="precio">${{i.Precio}}</p>
+        <div class="preorder">
+            <img src="{% static 'src/images/banner-index.png' %}" alt="">
+        </div>
+        <div class="ultimos">
+            <div class="flex">
+                <h1>Ultimos Lanzamientos</h1>
+                <a href="{% url 'Producto' %}">Ver todo</a>
+            </div>
+            <div class="tarjetas">
+                {% for i in a %}
+                    <div class="tar">
+                        <img src="{{i.Imagen.url}}" alt="">
+                        <div class="nomprec">
+                            <p>{{i.Nombre}}</p>
+                            <p class="precio">${{i.Precio}}</p>
+                        </div>
+                        <div class="nomprec">
+                            Cantidad
+                            <p>{{i.Stock}}</p>
+                        </div>
+                        <p style="padding-left: 15px; padding-right: 15px;">{{i.Descripcion}}</p>
                     </div>
-                    <div class="nomprec">
-                        Cantidad
-                        <p>{{i.Stock}}</p>
-                    </div>
-                    <p class="nomprec">{{i.Descripcion}}</p>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+        <div class="siguenos">
+            <h1>Síguenos en Instagram</h1>
+            <a href="">@gareispablo</a>
         </div>
     </main>
     {% endblock content %}
