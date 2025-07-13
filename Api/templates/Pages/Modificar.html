@@ -3,12 +3,71 @@
 <div class="contenedor-formulario">
     <form method="POST" enctype="multipart/form-data" class="formu">
         {% csrf_token %}
-        <h1>Modificar Producto</h1>
-        <div class="campos-formulario">
-            {{ modproducto }}
+        <div class="title">
+            <h2>Modificar Producto</h2>
         </div>
-        <input type="submit" value="Guardar Cambios">
+        <div class="campos-formulario">
+            <div>
+                <label for="id_Nombre">Nombre:</label>
+                {{ modproducto.Nombre }}
+            </div>
+            <div>
+                <label for="id_Descripcion">Descripción:</label>
+                {{ modproducto.Descripcion }}
+            </div>
+            <div>
+                <label for="id_Precio">Precio:</label>
+                {{ modproducto.Precio }}
+            </div>
+            <div>
+                <label for="id_Stock">Stock:</label>
+                {{ modproducto.Stock }}
+            </div>
+            <div class="pickimage">
+                <label for="id_Imagen" class="btnsnd">Elige una imagen</label>
+                {{ modproducto.Imagen.as_widget }}
+            </div>
+            <div style="display: flex; justify-content: flex-start; margin: auto; margin-top: 15px;" class="previews">
+                <div>
+                    {% if modproducto.instance.Imagen %}
+                        <p>Imagen actual:</p>
+                        <img src="{{ modproducto.instance.Imagen.url }}" alt="Imagen actual" id="imgActual" style="max-height: 150px; border: 1px solid #ccc;">
+                    {% endif %}
+                </div>
+                <div>
+                    <p>Imagen nueva:</p>
+                    <img id="imgPreview" style="height: 150px; border: 1px dashed #ccc; display: block; width: 150px; max-height: 150px; max-width: 150px;">
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Guardar cambios" class="btnsnd">
     </form>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const inputFile = document.getElementById("id_Imagen");
+    const preview = document.getElementById("imgPreview");
+
+    if (inputFile) {
+        inputFile.addEventListener("change", function() {
+            const file = inputFile.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+                preview.style.display = "none";
+            }
+        });
+    }
+});
+</script>
+
+
 {% endblock %}
 

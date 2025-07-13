@@ -1,30 +1,82 @@
 {% extends "index.html" %}
+{% load static %}
 {% block content %}
 <div class="contenedor-formulario">
     <form action="" method="POST" enctype="multipart/form-data" class="formu">
         {% csrf_token %}
-        <h2 class="titulo-formulario">Registrar Producto</h2>
-        <div class="campos-formulario">
-            {{ regproducto }}
+        <div class="title">
+            <h2>Registrar Producto</h2>
         </div>
-        <button type="submit" value="registro" class="boton-registrar">Registrar Producto</button>
-    </form>
-
-    <div class="tarjetas-producto">
-        {% for i in productos %}
-        <div class="tarjeta-producto">
-            <img src="{{i.Imagen.url}}" alt="Imagen de {{i.Nombre}}" class="imagen-producto">
-            <h1 class="nombre-producto">Nombre: {{i.Nombre}}</h1>
-            <p class="descripcion-producto">Descripción: {{i.Descripcion}}</p>
-            <p class="precio-producto">Precio: ${{i.Precio}}</p>
-            <p class="stock-producto">Stock: {{i.Stock}}</p>
-            <div class="acciones-producto">
-                <a href="{% url 'Modificar' i.Codigo %}" class="boton-modificar">Modificar</a>
-                <a href="{% url 'eliminar_producto' i.Codigo %}" class="boton-eliminar"
-                   onclick="return confirm('¿Estás seguro que querés eliminar este producto?');">Eliminar</a>
+        <div class="campos-formulario">
+            <div>
+                <label for="id_Nombre">Nombre:</label>
+                {{ regproducto.Nombre }}
+            </div>
+            <div>
+                <label for="id_Descripcion">Descripción:</label>
+                {{ regproducto.Descripcion }}
+            </div>
+            <div>
+                <label for="id_Precio">Precio:</label>
+                {{ regproducto.Precio }}
+            </div>
+            <div>
+                <label for="id_Stock">Stock:</label>
+                {{ regproducto.Stock }}
+            </div>
+            <div class="pickimage">
+                <label for="id_Imagen" class="btnsnd usarbtn">Elegir una imágen</label>
+                {{ regproducto.Imagen }}
+                <img id="imgPreview" style="max-height: 150px; border: 1px dashed #ccc; margin-top: 10px; height: 150px; width: 150px;" alt="Vista previa">
             </div>
         </div>
-        {% endfor %}
+        <button type="submit" value="registro" id="boton" class="boton-registrar btnsnd usarbtn">Registrar Producto</button>
+    </form>
+    <div class="tabla-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <span>Nombre</span>
+                    </th>
+                    <th>
+                        <span>Descripción</span>
+                    </th>
+                    <th>
+                        <span>Precio</span>
+                    </th>
+                    <th>
+                        <span>Stock</span>
+                    </th>
+                    <th class="acciones">
+                        <span>Acciones</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in productos %}
+                <tr>
+                    <td>
+                        <span style="font-weight: bolder;">{{i.Nombre}}</span>
+                    </td>
+                    <td>
+                        <span>{{i.Descripcion}}</span>
+                    </td>
+                    <td class="precioadmin">
+                        <span>{{i.Precio}}</span>
+                    </td>
+                    <td class="stock">
+                        <span>{{i.Stock}}</span>
+                    </td>
+                    <td class="actions">
+                        <a href="{% url 'Modificar' i.Codigo %}" style="margin-right: 25px;" class="modificar">✏️</a>
+                        <a href="{% url 'eliminar_producto' i.Codigo %}" class="eliminar">🗑️</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
+
 {% endblock %}

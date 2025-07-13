@@ -5,7 +5,11 @@
 <style>
     main{
         padding-top: 5%;
+        padding-bottom: 5%;
         display: flex;
+    }
+    .login-container{
+        max-width: 875px;
     }
 </style>
 <main>
@@ -15,11 +19,34 @@
             <h2>Crear cuenta</h2>
             <div class="inputs">
                 {% csrf_token %}
-                {{signup}}
+
+                {% for field in signup %}
+                    <div class="input-field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
             </div>
             <button type="submit">Ingresar</button>
-        <p>¿No tienes una cuenta? <a href="{% url 'login' %}">Regístrate aquí</a></p>
+        <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
         </div>
     </form>
 </main>
+
+{% if messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        {% for message in messages %}
+            Swal.fire({
+                icon: '{% if message.tags == "success" %}success{% else %}error{% endif %}',
+                title: '{{ message|escapejs }}',
+                confirmButtonColor: '#d33'
+            });
+        {% endfor %}
+    });
+</script>
+{% endif %}
+// @ ts-nocheck
+
 {% endblock content %}

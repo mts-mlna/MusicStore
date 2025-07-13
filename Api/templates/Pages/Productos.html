@@ -3,52 +3,36 @@
 {% block content %}
 <div class="buscador">
     <form action="" method="get" class="formu-buscador">
-        <h2>Buscar Álbum</h2>
+        <div class="title">
+            <h2>Buscar Álbum</h2>
+        </div>
         <div class="grupo-busqueda">
             <div class="campo-busqueda">
                 <label for="filtroNomAlbum">Nombre del álbum:</label>
-                <input type="text" name="filtroNomAlbum" id="filtroNomAlbum" placeholder="Ej. Thriller">
+                <input type="text" name="filtroNom" id="filtroNomAlbum" placeholder="Ej. Thriller">
             </div>
             <div class="campo-busqueda">
                 <label for="filtroNomArtista">Nombre del artista:</label>
-                <input type="text" name="filtroNomArtista" id="filtroNomArtista" placeholder="Ej. Michael Jackson">
+                <input type="text" name="filtroDes" id="filtroNomArtista" placeholder="Ej. Michael Jackson">
             </div>
             <div class="campo-boton">
                 <input type="submit" value="Buscar">
             </div>
         </div>
-<<<<<<< HEAD
-    </form>
-</div>
-
-<div class="tarjetas">
-    {% for i in productos %}
-    <div class="tarjeta-producto">
-        <img src="{{i.Imagen.url}}" alt="Imagen de {{i.Nombre}}" class="imagen-producto">
-        <h1 class="nombre-producto">Nombre: {{i.Nombre}}</h1>
-        <p class="descripcion-producto">Descripción: {{i.Descripcion}}</p>
-        <p class="precio-producto">Precio: ${{i.Precio}}</p>
-        <p class="stock-producto">Stock: {{i.Stock}}</p>
-    </div>
-    {% endfor %}
-</div>
-{% endblock content %}
-=======
-        <div class="tarjetas">
-            {% for i in productos %}
+            <div class="tarjetas">
+                {% for i in productos %}
                 <div class="tar">
                     <img src="{{i.Imagen.url}}" alt="">
-                    <div class="nomprec">
-                        <p>{{i.Nombre}}</p>
-                        <p class="precio">${{i.Precio}}</p>
+                    <div class="nomprec truncate">
+                        <p style="max-width: 75%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 25px;">{{i.Nombre}}</p>
+                        <p class="precio" style="font-size: 15px;">${{i.Precio}}</p>
                     </div>
                     <div class="nomprec">
-                        Cantidad
+                        <p style="font-size: 15px;">Cantidad</p>
                         <p>{{i.Stock}}</p>
                     </div>
-                    <p class="nomprec">{{i.Descripcion}}</p>
+                    <p class="descripcion" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 320px;">{{i.Descripcion}}</p>
                 </div>
             {% endfor %}
         </div>
 {% endblock content %}
->>>>>>> 8022196b0d19e6b0ef1da3945f601a6ca1c0cdf1

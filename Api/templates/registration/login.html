@@ -5,8 +5,8 @@
 
 <style>
     main{
-        height: 507px;
-        padding-top: 1%;
+        padding-top: 10%;
+        padding-bottom: 10%;
         display: flex;
     }
 </style>
@@ -16,13 +16,52 @@
         <img src="{% static 'src/images/login-image.png' %}" alt="">
         <div class="forminner">
             <h2 class="center-text">Iniciar Sesión</h2>
+
             <div class="inputs">
                 {% csrf_token %}
-                {{form}}
+                {% for field in form %}
+                    <div>
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
             </div>
+
             <button type="submit">Ingresar</button>
             <p>¿No tienes una cuenta? <a href="{% url 'Register' %}">Regístrate aquí</a></p>
         </div>
     </form>
 </main>
+
+{% if form.errors %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let errorMsg = "";
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                errorMsg += "{{ error|escapejs }}\n";
+            {% endfor %}
+        {% endif %}
+
+        {% for field in form %}
+            {% for error in field.errors %}
+                errorMsg += "{{ error|escapejs }}\n";
+            {% endfor %}
+        {% endfor %}
+
+        if (errorMsg) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al iniciar sesión',
+                text: errorMsg,
+                confirmButtonColor: '#d33'
+            });
+        }
+    });
+</script>
+{% endif %}
+
+
 {% endblock content %}
